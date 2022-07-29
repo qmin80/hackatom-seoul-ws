@@ -136,12 +136,15 @@ init-golang-rly:
 	@echo "Initializing relayer..."
 	./network/relayer/interchain-acc-config/rly.sh
 
+setup-golang-rly:
+	@echo "Creating connection and ICS20 channel..."
+	.network/relayer/interchain-acc-config/rly-link.sh
 
 start: 
 	@echo "Starting up test network"
 	./network/start.sh
 
-start-rly:
+start-hermes-rly:
 	./network/hermes/start.sh
 
 start-golang-rly:
