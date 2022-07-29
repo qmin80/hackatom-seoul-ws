@@ -127,11 +127,15 @@ init: kill-dev install
 init-hermes-rly:	
 	@echo "Initializing relayer..." 
 	./network/hermes/restore-keys.sh
+
+setup-hermes-rly:	
+	@echo "Creating connection and ICS20 channel..." 
 	./network/hermes/create-conn.sh
 
 init-golang-rly:
 	@echo "Initializing relayer..."
 	./network/relayer/interchain-acc-config/rly.sh
+
 
 start: 
 	@echo "Starting up test network"
@@ -139,6 +143,10 @@ start:
 
 start-rly:
 	./network/hermes/start.sh
+
+start-golang-rly:
+	@echo "Starting relayer..."
+	./network/relayer/interchain-acc-config/rly-start.sh
 
 kill-dev:
 	@echo "Killing icad and removing previous data"

@@ -52,7 +52,33 @@ make start-rly
 > This is the situation *after* `make init`. The chain binary's have been built and started, and an IBC connection between controller and host chains has been set up.
 ![post-init](./images/post-init.png)
 
-## Demo
+## Fungible Token Transfer
+
+When we have setup the client, connection and ics20 (`transfer`) channel, we can send token across chains. We will send some tokens from the `seoul` chain to the `hackatom` chain.
+
+```bash
+# Send some stake tokens from seoul to hackatom, using demowallets on respective chains.
+$ icad tx ibc-transfer transfer transfer channel-0 $DEMOWALLET_1 11000stake --from $DEMOWALLET_2 --chain-id seoul --home ./data/seoul --node tcp://localhost:26657 --keyring-backend test -y
+```
+When we check the resulting balance, we get the following:
+
+```bash
+# Query for the balance of the demowallet on chain hackatom
+icad q bank balances $DEMOWALLET_1  --chain-id hackatom --node tcp://localhost:16657
+```
+
+```bash
+# Result of the balance query
+balances:
+- amount: "11000"
+  denom: ibc/C053D637CCA2A2BA030E2C5EE1B28A16F71CCB0E45E8BE52766DC1B241B77878
+- amount: "100000000000"
+  denom: stake
+```
+
+Pay attention to the IBC denom: `ibc/C053D637CCA2A2BA030E2C5EE1B28A16F71CCB0E45E8BE52766DC1B241B77878`. It is a hash of the path information prepended by `ibc/`.
+
+## Interchain Accounts
 
 **NOTE:** For the purposes of this demo the setup scripts have been provided with a set of hardcoded mnemonics that generate deterministic wallet addresses used below.
 
