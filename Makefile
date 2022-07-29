@@ -138,7 +138,7 @@ init-golang-rly:
 
 setup-golang-rly:
 	@echo "Creating connection and ICS20 channel..."
-	.network/relayer/interchain-acc-config/rly-link.sh
+	./network/relayer/interchain-acc-config/rly-link.sh
 
 start: 
 	@echo "Starting up test network"

@@ -28,7 +28,7 @@ https://ibc.cosmos.network/main/apps/interchain-accounts/overview.html
 
 ```bash
 git clone https://github.com/tmsdkeys/hackatom-seoul-ws.git
-cd interchain-accounts
+cd hackatom-seoul-ws
 
 make install 
 ```
@@ -67,10 +67,10 @@ Check the `network/init.sh` script to see the intialization parameters.
 
 ```bash
 # Configuration for `hermes` happens in a `config.toml` file, we register keys by:
-$ make init-hermes-rly
+make init-hermes-rly
 
 # Configuration for `rly` happens via the CLI. We also register keys for the relayer accounts.
-$ make init-golang-rly
+make init-golang-rly
 ```
 > :warning: We will be making use of both relayer softwares in the workshop, but please note that interchain accounts support is not yet present in rly v2.0.0-rc3 but will be added in a future release candidate.
 
@@ -78,10 +78,10 @@ $ make init-golang-rly
 
 ```bash
 # Create connection and ICS20 channel with `hermes`
-$ make setup-hermes-rly
+make setup-hermes-rly
 
 # Create connection and ICS20 channel with `rly``
-$ make setup-golang-rly
+make setup-golang-rly
 ```
 
 ## Fungible Token Transfer
@@ -98,13 +98,13 @@ When we have setup the client, connection and ics20 (`transfer`) channel, we can
 
 ```bash
 # Send some stake tokens from seoul to hackatom, using demowallets on respective chains.
-$ icad tx ibc-transfer transfer transfer channel-0 $DEMOWALLET_1 11000stake --from $DEMOWALLET_2 --chain-id seoul --home ./data/seoul --node tcp://localhost:26657 --keyring-backend test -y
+icad tx ibc-transfer transfer transfer channel-0 $DEMOWALLET_1 11000stake --from $DEMOWALLET_2 --chain-id seoul --home ./data/seoul --node tcp://localhost:26657 --keyring-backend test -y
 ```
 When we check the resulting balance, we get the following:
 
 ```bash
 # Query for the balance of the demowallet on chain hackatom
-$ icad q bank balances $DEMOWALLET_1  --chain-id hackatom --node tcp://localhost:16657
+icad q bank balances $DEMOWALLET_1  --chain-id hackatom --node tcp://localhost:16657
 ```
 
 ```bash
@@ -128,7 +128,7 @@ We created the setup in an earlier section. Let's take a look at a situation ske
 :exclamation:From now on we will switch over to the `hermes` relayer to use Interchain accounts functionality.
 
 ```bash
-$ make start-hermes-rly
+make start-hermes-rly
 ```
 
 ### Registering an Interchain Account via IBC
@@ -138,10 +138,10 @@ Here the message signer is used as the account owner.
 
 ```bash
 # Register an interchain account on behalf of DEMOWALLET_1 where chain test-2 is the interchain accounts host
-$ icad tx intertx register --from $DEMOWALLET_1 --connection-id connection-0 --chain-id hackatom --home ./data/hackatom --node tcp://localhost:16657 --keyring-backend test -y
+icad tx intertx register --from $DEMOWALLET_1 --connection-id connection-0 --chain-id hackatom --home ./data/hackatom --node tcp://localhost:16657 --keyring-backend test -y
 
 # Query the address of the interchain account
-$ icad query intertx interchainaccounts connection-0 $DEMOWALLET_1 --home ./data/hackatom --node tcp://localhost:16657
+icad query intertx interchainaccounts connection-0 $DEMOWALLET_1 --home ./data/hackatom --node tcp://localhost:16657
 
 # Store the interchain account address by parsing the query result: cosmos1hd0f4u7zgptymmrn55h3hy20jv2u0ctdpq23cpe8m9pas8kzd87smtf8al
 export ICA_ADDR=$(icad query intertx interchainaccounts connection-0 $DEMOWALLET_1 --home ./data/hackatom --node tcp://localhost:16657 -o json | jq -r '.interchain_account_address') && echo $ICA_ADDR
@@ -156,7 +156,7 @@ As we've only just created the Interchain account, it has no funds yet. To submi
 
 ```bash
 # Query the interchain account balance on the host chain. It should be empty.
-$ icad q bank balances $ICA_ADDR --chain-id seoul --node tcp://localhost:26657
+icad q bank balances $ICA_ADDR --chain-id seoul --node tcp://localhost:26657
 ```
 
 We can allocate funds to the new Interchain Account wallet by using the `bank send` command from an account on the `seoul` chain or from the IBC vouchers we sent earlier to the `hackatom` chain.
@@ -165,19 +165,19 @@ We can allocate funds to the new Interchain Account wallet by using the `bank se
 
 ```bash
 # Send funds to the interchain account.
-$ icad tx bank send $DEMOWALLET_2 $ICA_ADDR 10000stake --chain-id seoul --home ./data/seoul --node tcp://localhost:26657 --keyring-backend test -y
+icad tx bank send $DEMOWALLET_2 $ICA_ADDR 10000stake --chain-id seoul --home ./data/seoul --node tcp://localhost:26657 --keyring-backend test -y
 
 # Query the balance once again and observe the changes
-$ icad q bank balances $ICA_ADDR --chain-id seoul --node tcp://localhost:26657
+icad q bank balances $ICA_ADDR --chain-id seoul --node tcp://localhost:26657
 ```
 - **ICS20 transfer from controller chain**
 
 ```bash
 # Send funds through interchain token transfer from the demowallet account on `hackatom` chain
-$ icad tx ibc-transfer transfer transfer channel-0 $ICA_ADDR 9000ibc/C053D637CCA2A2BA030E2C5EE1B28A16F71CCB0E45E8BE52766DC1B241B77878 --from $DEMOWALLET_1 --chain-id hackatom --home ./data/hackatom --node tcp://localhost:16657 --keyring-backend test -y
+icad tx ibc-transfer transfer transfer channel-0 $ICA_ADDR 9000ibc/C053D637CCA2A2BA030E2C5EE1B28A16F71CCB0E45E8BE52766DC1B241B77878 --from $DEMOWALLET_1 --chain-id hackatom --home ./data/hackatom --node tcp://localhost:16657 --keyring-backend test -y
 
 # Query the balance once again and observe the changes
-$ icad q bank balances $ICA_ADDR --chain-id seoul --node tcp://localhost:26657
+icad q bank balances $ICA_ADDR --chain-id seoul --node tcp://localhost:26657
 ```
 :exclamation: Check if the balance shown is the native `stake` token.
 
@@ -237,29 +237,29 @@ icad q staking delegations-to cosmosvaloper1qnk2n4nlkpw9xfqntladh74w6ujtulwnmxnh
 5. Due to the nature of ordered channels, the timeout will subsequently update the state of the channel to `STATE_CLOSED`.
 Observe both channel ends by querying the IBC channels for each node.
 
-```bash
-# inspect channel ends on hackatom chain
-icad q ibc channel channels --home ./data/hackatom --node tcp://localhost:16657
+    ```bash
+    # inspect channel ends on hackatom chain
+    icad q ibc channel channels --home ./data/hackatom --node tcp://localhost:16657
 
-# inspect channel ends on seoul chain
-icad q ibc channel channels --home ./data/seoul --node tcp://localhost:26657
-```
+    # inspect channel ends on seoul chain
+    icad q ibc channel channels --home ./data/seoul --node tcp://localhost:26657
+    ```
 
 6. Open a new channel for the existing interchain account on the same connection.
 
-```bash
-icad tx intertx register --from $DEMOWALLET_1 --connection-id connection-0 --chain-id test-1 --home ./data/test-1 --node tcp://localhost:16657 --keyring-backend test -y
-```
+    ```bash
+    icad tx intertx register --from $DEMOWALLET_1 --connection-id connection-0 --chain-id hackatom --home ./data/hackatom --node tcp://localhost:16657 --keyring-backend test -y
+    ```
 
 7. Inspect the IBC channels once again and observe a new creately interchain accounts channel with `STATE_OPEN`.
 
-```bash
-# inspect channel ends on hackatom chain
-icad q ibc channel channels --home ./data/hackatom --node tcp://localhost:16657
+    ```bash
+    # inspect channel ends on hackatom chain
+    icad q ibc channel channels --home ./data/hackatom --node tcp://localhost:16657
 
-# inspect channel ends on seoul chain
-icad q ibc channel channels --home ./data/seoul --node tcp://localhost:26657
-```
+    # inspect channel ends on seoul chain
+    icad q ibc channel channels --home ./data/seoul --node tcp://localhost:26657
+    ```
 
 ## Collaboration
 
