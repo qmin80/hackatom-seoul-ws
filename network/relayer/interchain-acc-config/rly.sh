@@ -27,11 +27,9 @@ echo "Restoring accounts..."
 $BINARY keys restore $CHAINID_1 testkey "$MNEMONIC_1" --home $CHAIN_DIR/$RELAYER_DIR
 $BINARY keys restore $CHAINID_2 testkey "$MNEMONIC_2" --home $CHAIN_DIR/$RELAYER_DIR
 
-# echo "Setting up ics20 channels..."
-# $BINARY tx chan hackatom-seoul-transfer --src-port transfer --dst-port transfer --version ics20-1 --order unordered --home $CHAIN_DIR/$RELAYER_DIR
-
 echo "Linking both chains"
 $BINARY tx link hackatom-seoul-transfer --home $CHAIN_DIR/$RELAYER_DIR
 
-echo "Starting to listen relayer..."
-$BINARY start hackatom-seoul-transfer --home $CHAIN_DIR/$RELAYER_DIR
+# echo "Setting up ics20 channels... in case there is already a connection"
+# $BINARY tx chan hackatom-seoul-transfer --src-port transfer --dst-port transfer --version ics20-1 --order unordered --home $CHAIN_DIR/$RELAYER_DIR
+
