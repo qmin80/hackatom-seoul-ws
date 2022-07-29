@@ -9,7 +9,7 @@ Documentation regarding authentication modules can be found in the [IBC Develope
 
 ## Overview 
 
-This workshop, created for the HackAtom in Seoul (July 29-31 2022), gives an introduction to the IBC and some IBC applications. We will take a look at ICS20 (fungible token transfer) and ICS27 (Interchain Accounts).
+This workshop, created for the [HackAtom in Seoul](https://www.buidl.asia/hackatom-seoul-2022) (July 29-31 2022), gives an introduction to IBC and some IBC applications. We will take a look at ICS20 (fungible token transfer) and ICS27 (Interchain Accounts).
 
 The repository contains a basic example of an Interchain Accounts authentication module and serves as a developer guide for teams that wish to use interchain accounts functionality.
 
@@ -18,9 +18,10 @@ Interchain Accounts is now available in the [`v3.0.0`](https://github.com/cosmos
 
 ### Developer Documentation
 
-Interchain Accounts developer docs can be found on the IBC documentation website.
+IBC developer docs can be found on the IBC documentation website.
 
-https://ibc.cosmos.network/main/apps/interchain-accounts/overview.html
+- [ICS20 - token transfer](https://ibc.cosmos.network/main/apps/transfer/overview.html)
+- [ICS27 - interchain accounts](https://ibc.cosmos.network/main/apps/interchain-accounts/overview.html)
 
 ## Setup
 
