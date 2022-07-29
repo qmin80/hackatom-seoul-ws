@@ -90,7 +90,7 @@ host = '127.0.0.1'
 port = 3001
 
 [[chains]]
-id = 'test-1'
+id = 'hackatom'
 rpc_addr = 'http://127.0.0.1:16657'
 grpc_addr = 'http://127.0.0.1:8090'
 websocket_addr = 'ws://127.0.0.1:16657/websocket'
@@ -111,7 +111,7 @@ trust_threshold = { numerator = '1', denominator = '3' }
 address_type = { derivation = 'cosmos' }
 
 [[chains]]
-id = 'test-2'
+id = 'seoul'
 rpc_addr = 'http://127.0.0.1:26657'
 grpc_addr = 'http://127.0.0.1:9090'
 websocket_addr = 'ws://127.0.0.1:26657/websocket'

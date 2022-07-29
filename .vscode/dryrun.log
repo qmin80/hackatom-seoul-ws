@@ -1,0 +1,7 @@
+make: Entering directory `/Users/thomasinterchain/cosmos/hackatom-seoul-ws'
+echo "--> Ensure dependencies have not been modified"
+GO111MODULE=on go mod verify
+echo "--> Installing icad"
+go install ./cmd/icad
+make: Leaving directory `/Users/thomasinterchain/cosmos/hackatom-seoul-ws'
+ 

@@ -123,14 +123,13 @@ init: kill-dev install
 	@echo "Initializing both blockchains..."
 	./network/init.sh
 	./network/start.sh
+
+init-hermes-rly:	
 	@echo "Initializing relayer..." 
 	./network/hermes/restore-keys.sh
 	./network/hermes/create-conn.sh
 
-init-golang-rly: kill-dev install
-	@echo "Initializing both blockchains..."
-	./network/init.sh
-	./network/start.sh
+init-golang-rly:
 	@echo "Initializing relayer..."
 	./network/relayer/interchain-acc-config/rly.sh
 

@@ -2,8 +2,8 @@
 
 BINARY=icad
 CHAIN_DIR=./data
-CHAINID_1=test-1
-CHAINID_2=test-2
+CHAINID_1=hackatom
+CHAINID_2=seoul
 VAL_MNEMONIC_1="clock post desk civil pottery foster expand merit dash seminar song memory figure uniform spice circle try happy obvious trash crime hybrid hood cushion"
 VAL_MNEMONIC_2="angry twist harsh drastic left brass behave host shove marriage fall update business leg direct reward object ugly security warm tuna model broccoli choice"
 DEMO_MNEMONIC_1="banner spread envelope side kite person disagree path silver will brother under couch edit food venture squirrel civil budget number acquire point work mass"

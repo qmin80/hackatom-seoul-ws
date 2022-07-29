@@ -1,0 +1,28 @@
+{
+  "src":
+    {
+      "chain-id":"hackatom",
+      "client-id":"",
+      "connection-id":"",
+      "channel-id":"",
+      "port-id":"transfer",
+      "order":"unordered",
+      "version":"ics20-1"
+    },
+  "dst":
+    {
+      "chain-id":"seoul",
+      "client-id":"",
+      "connection-id":"",
+      "channel-id":"",
+      "port-id":"transfer",
+      "order":"unordered",
+      "version":"ics20-1"
+    },
+  "strategy":
+    {
+      "type":"naive"
+    }
+}
+
+
