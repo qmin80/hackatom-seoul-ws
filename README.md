@@ -117,7 +117,18 @@ balances:
   denom: stake
 ```
 
-Pay attention to the IBC denom: `ibc/C053D637CCA2A2BA030E2C5EE1B28A16F71CCB0E45E8BE52766DC1B241B77878`. It is a hash of the path information prepended by `ibc/`.
+:warning: Pay attention to the IBC denom: `ibc/C053D637CCA2A2BA030E2C5EE1B28A16F71CCB0E45E8BE52766DC1B241B77878`. It is a hash of the path information prepended by `ibc/`.
+
+The path information can be found from the hash by the `denom_trace` command:
+```bash
+$ icad q ibc-transfer denom-trace C053D637CCA2A2BA030E2C5EE1B28A16F71CCB0E45E8BE52766DC1B241B77878 --chain-id hackatom --node tcp://localhost:16657
+
+# Results in...
+denom_trace:
+  base_denom: stake
+  path: transfer/channel-0
+```
+
 
 ## Interchain Accounts
 
