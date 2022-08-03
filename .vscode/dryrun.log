@@ -1,3 +1,4 @@
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/thomasinterchain/cosmos/hackatom-seoul-ws'
 echo "--> Ensure dependencies have not been modified"
 GO111MODULE=on go mod verify

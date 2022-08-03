@@ -11,7 +11,7 @@
     "gas-adjustment": 1.5,
     "gas-prices": "0.025stake",
     "debug": true,
-    "timeout": "10s",
+    "timeout": "20s",
     "output-format": "json",
     "sign-mode": "direct",
     "trusting-period": "330h",

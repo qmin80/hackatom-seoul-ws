@@ -43,7 +43,7 @@ cargo install --version 0.14.1 ibc-relayer-cli --bin hermes --locked
 - golang relayer
 ```bash
 $ git clone https://github.com/cosmos/relayer.git
-$ git checkout v2.0.0-rc3
+$ git checkout v2.0.0-rc4
 $ cd relayer && make install
 ```
 
@@ -73,9 +73,10 @@ make init-hermes-rly
 # Configuration for `rly` happens via the CLI. We also register keys for the relayer accounts.
 make init-golang-rly
 ```
-> :warning: We will be making use of both relayer softwares in the workshop, but please note that interchain accounts support is not yet present in rly v2.0.0-rc3 but will be added in a future release candidate.
 
 5. The next step is to create a connection between the `hackatom` and `seoul` chains, as well as a channel for ics20 transfers.
+
+> :warning: Execute only one of the next setup scripts, with `hermes` or `rly`. Both will by default set up a new connection and ics20 channel, which may result in confusion with connection and channels IDs down the line.
 
 ```bash
 # Create connection and ICS20 channel with `hermes`
@@ -93,6 +94,15 @@ make setup-golang-rly
 # Store the following account addresses within the current shell env
 export DEMOWALLET_1=$(icad keys show demowallet1 -a --keyring-backend test --home ./data/hackatom) && echo $DEMOWALLET_1;
 export DEMOWALLET_2=$(icad keys show demowallet2 -a --keyring-backend test --home ./data/seoul) && echo $DEMOWALLET_2;
+```
+
+Before we can send tokens over IBC, we will need to spin up one of the relayers we've configured:
+```bash
+# hermes
+make start-hermes-rly
+
+# go relayer
+make start-golang-rly
 ```
 
 When we have setup the client, connection and ics20 (`transfer`) channel, we can send token across chains. We will send some tokens from the `seoul` chain to the `hackatom` chain.
@@ -137,11 +147,6 @@ We created the setup in an earlier section. Let's take a look at a situation ske
 > This is the situation *after* `make init` and creating a connection. The diagram focuses on ICA, so **the ICS20 channel is not shown**. The chain binary's have been built and started, and an IBC connection between controller and host chains has been set up.
 ![post-init](./images/post-init.png)
 
-:exclamation:From now on we will switch over to the `hermes` relayer to use Interchain accounts functionality.
-
-```bash
-make start-hermes-rly
-```
 
 ### Registering an Interchain Account via IBC
 
@@ -234,19 +239,23 @@ icad q staking delegations-to cosmosvaloper1qnk2n4nlkpw9xfqntladh74w6ujtulwnmxnh
 
 #### Testing timeout scenario
 
-1. Stop the Hermes relayer process and send another staking delegation transaction using interchain accounts, as in the example provided above.
+1. Stop the relayer process and send another staking delegation transaction using interchain accounts, as in the example provided above.
 
 2. Wait for approx. 1 minute for the timeout to elapse.
 
 3. Restart the relayer process
 
     ```bash
+    # hermes
     make start-hermes-rly
+
+    # go relayer
+    make start-golang-rly
     ```
 
 4. Observe the packet timeout and relayer reacting appropriately (issuing a MsgTimeout to testchain `hackatom`).
 
-5. Due to the nature of ordered channels, the timeout will subsequently update the state of the channel to `STATE_CLOSED`.
+5. :exclamation: Due to the nature of ordered channels, the timeout will subsequently update the state of the channel to `STATE_CLOSED`.
 Observe both channel ends by querying the IBC channels for each node.
 
     ```bash

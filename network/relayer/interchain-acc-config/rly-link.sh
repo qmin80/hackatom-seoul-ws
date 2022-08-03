@@ -13,8 +13,4 @@ if ! [ -x "$(command -v $BINARY)" ]; then
 fi
 
 echo "Linking both chains"
-$BINARY tx link hackatom-seoul-transfer --home $CHAIN_DIR/$RELAYER_DIR
-
-# echo "Setting up ics20 channels... in case there is already a connection"
-# $BINARY tx chan hackatom-seoul-transfer --src-port transfer --dst-port transfer --version ics20-1 --order unordered --home $CHAIN_DIR/$RELAYER_DIR
-
+$BINARY tx link hackatom-seoul --home $CHAIN_DIR/$RELAYER_DIR

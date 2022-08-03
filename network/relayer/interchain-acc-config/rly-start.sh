@@ -13,4 +13,4 @@ if ! [ -x "$(command -v $BINARY)" ]; then
 fi
 
 echo "Starting to listen relayer..."
-$BINARY start hackatom-seoul-transfer --home $CHAIN_DIR/$RELAYER_DIR
+$BINARY start hackatom-seoul -b 100 -p events --home $CHAIN_DIR/$RELAYER_DIR

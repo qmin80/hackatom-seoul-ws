@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Fri Jul 29 09:39:46 2022
+# Make data base, printed on Wed Aug  3 11:22:21 2022
 
 # Variables
 
@@ -20,13 +20,14 @@ make: *** No rule to make target `all'.  Stop.
 ?F = $(notdir $?)
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
- 
 # makefile (from `Makefile', line 71)
 SDK_QUERY = third_party/proto/cosmos/base/query/v1beta1
 # makefile (from `Makefile', line 64)
 TM_CRYPTO_TYPES = third_party/proto/tendermint/crypto
 # environment
 LC_CTYPE = UTF-8
+# environment
+DEMOWALLET_2 = cosmos10h9stc5v6ntgeygf5xf945njqq5h32r53uquvw
 # makefile (from `Makefile', line 4)
 DOCKER_BUF := /usr/local/bin/docker run --rm -v /Users/thomasinterchain/cosmos/hackatom-seoul-ws:/workspace --workdir /workspace bufbuild/buf:1.0.0-rc8
 # automatic
@@ -65,8 +66,8 @@ GOPROXY = https://proxy.golang.org,direct
 PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Users/thomasinterchain/.cargo/bin:/Users/thomasinterchain/go/bin
 # makefile (from `Makefile', line 61)
 CONFIO_URL = https://raw.githubusercontent.com/confio/ics23/v0.6.3
-# makefile (from `Makefile', line 3)
-DOCKER := /usr/local/bin/docker
+# environment
+ICA_ADDR = cosmos15ccshhmp0gsx29qpqq6g4zmltnnvgmyu9ueuadh9y2nc5zj0szls5gtddz
 # makefile (from `Makefile', line 62)
 SDK_PROTO_URL = https://raw.githubusercontent.com/cosmos/cosmos-sdk/v0.41.0/proto/cosmos
 # makefile (from `Makefile', line 69)
@@ -74,7 +75,7 @@ TM_P2P = third_party/proto/tendermint/p2p
 # environment
 GOPATH = /Users/thomasinterchain/go
 # environment
-LaunchInstanceID = 23247261-E090-46DE-8541-D5732019E241
+LaunchInstanceID = 751BEEB9-0839-47BC-8903-C8872F259B92
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
@@ -82,7 +83,7 @@ ELECTRON_RUN_AS_NODE = 1
 # makefile (from `Makefile', line 59)
 TM_URL = https://raw.githubusercontent.com/tendermint/tendermint/v0.34.0-rc6/proto/tendermint
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.mts9D2iAj1/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.TMTF1tsaW5/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -130,11 +131,13 @@ USER = thomasinterchain
 # default
 MAKECMDGOALS := all
 # environment
-TERM_SESSION_ID = w0t0p0:3CBC889B-3EF4-4A11-8CB1-87496DC7A173
+TERM_SESSION_ID = w0t0p0:9C76A814-E1FA-498F-910C-36B13D32A1E5
 # makefile (from `Makefile', line 38)
 containerProtoGen = cosmos-sdk-proto-gen-$(containerProtoVer)
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
+# makefile (from `Makefile', line 3)
+DOCKER := /usr/local/bin/docker
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
 # environment
@@ -162,7 +165,7 @@ MFLAGS = -Rrqp
 # environment
 TERM_PROGRAM_VERSION = 3.4.16
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.51912587.51912594.B0E44D78-0939-4042-8455-85F46AD65793
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.51912587.51912594.CADBFB15-2D8A-4521-BC86-4A5A18738808
 # environment
 LC_TERMINAL_VERSION = 3.4.16
 # automatic
@@ -172,7 +175,7 @@ CONFIO_TYPES = third_party/proto/confio
 # automatic
 +F = $(notdir $+)
 # environment
-ITERM_SESSION_ID = w0t0p0:3CBC889B-3EF4-4A11-8CB1-87496DC7A173
+ITERM_SESSION_ID = w0t0p0:9C76A814-E1FA-498F-910C-36B13D32A1E5
 # makefile (from `Makefile', line 2)
 PACKAGES = $(shell go list ./...)
 # environment
@@ -189,10 +192,12 @@ MAKEFILES :=
 ITERM_PROFILE = Default
 # environment
 LC_ALL = C
+# environment
+DEMOWALLET_1 = cosmos1m9l358xunhhwds0568za49mzhvuxx9uxre5tud
 # makefile (from `Makefile', line 68)
 TM_LIBS = third_party/proto/tendermint/libs/bits
 # environment
-SECURITYSESSIONID = 18781
+SECURITYSESSIONID = 18726
 # automatic
 ^F = $(notdir $^)
 # makefile (from `Makefile', line 60)
@@ -210,11 +215,11 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 43707
+VSCODE_PID = 11726
 # makefile (from `Makefile', line 73)
 SDK_UPGRADE = third_party/proto/cosmos/upgrade
 # variable set hash-table stats:
-# Load=99/1024=10%, Rehash=0, Collisions=8/127=6%
+# Load=102/1024=10%, Rehash=0, Collisions=10/130=8%
 
 # Pattern-specific Variable Values
 
@@ -241,6 +246,15 @@ proto-lint:
 	@$(DOCKER_BUF) lint --error-format=json
 	
 
+init-hermes-rly:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 128):
+	@echo "Initializing relayer..." 
+	./network/hermes/restore-keys.sh
+	
+
 go.sum: go.mod
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -248,6 +262,15 @@ go.sum: go.mod
 #  commands to execute (from `Makefile', line 17):
 	@echo "--> Ensure dependencies have not been modified"
 	GO111MODULE=on go mod verify
+	
+
+start-golang-rly:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 151):
+	@echo "Starting relayer..."
+	./network/relayer/interchain-acc-config/rly-start.sh
 	
 
 # Not a target:
@@ -265,6 +288,7 @@ proto-gen:
 #  File does not exist.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 45):
+ 
 	@echo "Generating Protobuf files"
 	$(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace tendermintdev/sdk-proto-gen sh ./scripts/protocgen.sh
 	
@@ -287,7 +311,6 @@ proto-format:
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 49):
 	@echo "Formatting Protobuf files"
- 
 	@if docker ps -a --format '{{.Names}}' | grep -Eq "^${containerProtoFmt}$$"; then docker start -a $(containerProtoFmt); else docker run --name $(containerProtoFmt) -v $(CURDIR):/workspace --workdir /workspace tendermintdev/docker-build-proto \
 	find ./ -not -path "./third_party/*" -name "*.proto" -exec clang-format -i {} \; ; fi
 	
@@ -301,17 +324,26 @@ proto-format:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-29 09:38:07
+#  Last modified 2022-07-29 13:50:28
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+setup-hermes-rly:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 132):
+	@echo "Creating connection and ICS20 channel..." 
+	./network/hermes/create-conn.sh
+	
+
 start:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 138):
+#  commands to execute (from `Makefile', line 144):
 	@echo "Starting up test network"
 	./network/start.sh
 	
@@ -339,22 +371,11 @@ proto-all: proto-format proto-lint proto-gen
 #  File does not exist.
 #  File has not been updated.
 
-start-rly:
+init-golang-rly:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 142):
-	./network/hermes/start.sh
-	
-
-init-golang-rly: kill-dev install
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 131):
-	@echo "Initializing both blockchains..."
-	./network/init.sh
-	./network/start.sh
+#  commands to execute (from `Makefile', line 136):
 	@echo "Initializing relayer..."
 	./network/relayer/interchain-acc-config/rly.sh
 	
@@ -364,6 +385,14 @@ go.mod:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+
+start-hermes-rly:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 148):
+	./network/hermes/start.sh
+	
 
 # Not a target:
 .DEFAULT:
@@ -414,19 +443,25 @@ init: kill-dev install
 	@echo "Initializing both blockchains..."
 	./network/init.sh
 	./network/start.sh
-	@echo "Initializing relayer..." 
-	./network/hermes/restore-keys.sh
-	./network/hermes/create-conn.sh
 	
 
 kill-dev:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 145):
+#  commands to execute (from `Makefile', line 155):
 	@echo "Killing icad and removing previous data"
 	-@rm -rf ./data
 	-@killall icad 2>/dev/null
+	
+
+setup-golang-rly:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 140):
+	@echo "Creating connection and ICS20 channel..."
+	./network/relayer/interchain-acc-config/rly-link.sh
 	
 
 lint:
@@ -466,7 +501,7 @@ install: go.sum
 	
 
 # files hash-table stats:
-# Load=25/1024=2%, Rehash=0, Collisions=2/55=4%
+# Load=29/1024=3%, Rehash=0, Collisions=3/57=5%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -478,6 +513,6 @@ install: go.sum
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Jul 29 09:39:46 2022
+# Finished Make data base on Wed Aug  3 11:22:21 2022
 
  
